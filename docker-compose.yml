@@ -6,6 +6,8 @@ services:
       - mysql_credentials.env
     networks:
       - quarrel-network
+    volumes:
+      - "./db:/docker-entrypoint-initdb.d"
   web:
     build: .
     develop:
