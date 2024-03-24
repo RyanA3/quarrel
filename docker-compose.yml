@@ -1,11 +1,9 @@
 services:
   db:
     image: mysql:latest
-    environment:
-      MYSQL_DATABASE: quarrel_db
-      MYSQL_USER: quarrel_user
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
+    env_file:
+      - mysql_server.env
+      - mysql_credentials.env
     networks:
       - quarrel-network
   web:
