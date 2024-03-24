@@ -1,0 +1,37 @@
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: quarrel_db
+      MYSQL_USER: quarrel_user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - quarrel-network
+  web:
+    build: .
+    develop:
+      watch:
+        - action: sync
+          path: ./public
+          target: /var/www/html
+    depends_on:
+      - db
+    ports:
+      - 80:80
+    networks:
+      - quarrel-network
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - 8001:80
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+    networks:
+      - quarrel-network
+networks:
+  quarrel-network:
+    driver: bridge
