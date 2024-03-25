@@ -1,3 +1,4 @@
 <?php
-var_dump($_GET)
+require_once 'src/App.php';
+new App();
 ?>
