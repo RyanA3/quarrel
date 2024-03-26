@@ -1,10 +1,11 @@
 <?php
 
-    class Home {
+    class Home extends Controller {
 
-        public function index($a = '', $b = '') {
-            echo 'Home! (controller, index)';
-            echo $a, ' ', $b;
+        public function index() {
+            $items = $this->model('item')->get();
+
+            $this->view('home/index', ['items'=>$items]);
         }
 
     }
