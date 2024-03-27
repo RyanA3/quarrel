@@ -11,5 +11,6 @@
                 }
             ?>
         </ul>
+        <a href='/home/create'>Create an Item</a>
     </body>
 </html>

@@ -13,6 +13,11 @@ class Item extends Model {
         return $statement->fetchAll();
     }
 
-}
+    public function create() {
+        $sql = 'INSERT INTO Item(name) VALUE(:name)';
+        $statement = self::$_connection->prepare($sql);
+        $statement->execute(['name'=>$this->name]); 
+        return $statement->rowCount();
+    }
 
-?>
+}
