@@ -16,6 +16,10 @@ services:
         - action: sync
           path: ./public
           target: /var/www/html
+    env_file:
+      - mysql_server.env
+      - mysql_credentials.env
+      - .env
     depends_on:
       - db
     ports:

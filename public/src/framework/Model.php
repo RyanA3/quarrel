@@ -6,10 +6,10 @@ class Model {
 
     public function __construct() {
         if(self::$_connection == null) {
-            $host = 'db';
-            $dbname = 'quarrel_db';
-            $user = 'quarrel_admin';
-            $password = 'password';
+            $host = getenv("MYSQL_HOST");
+            $dbname = getenv("MYSQL_DATABASE");
+            $user = getenv("MYSQL_USER");
+            $password = getenv("MYSQL_PASSWORD");
 
             self::$_connection = new PDO("mysql:host=$host;dbname=$dbname", $user, $password); 
         }
