@@ -2,14 +2,14 @@
 
 class App {
 
-    var $controller = 'Home';
+    var $controller = 'home';
     var $method = 'index';
     var $params = [];
 
     public function __construct() {
 
         $url = $this->parseURL();
-    
+
         if(isset($url[0]) && file_exists('src/controller/' . $url[0] . '.php')) {
             $this->controller = $url[0];
             unset($url[0]);
@@ -25,7 +25,6 @@ class App {
 
         $this->params = $url ? array_values($url) : [];
         call_user_func_array([$this->controller, $this->method], $this->params);
-    
     }
 
     private function parseURL() {

@@ -20,4 +20,12 @@ class Item extends Model {
         return $statement->rowCount();
     }
 
+    public function find($ItemID) {
+        $sql = 'SELECT * FROM Item WHERE ItemID = :ItemID';
+        $statement = self::$_connection->prepare($sql);
+        $statement->execute(['ItemID'=>$ItemID]);
+        $statement->setFetchMode(PDO::FETCH_CLASS, 'Item');
+        return $statement->fetch();
+    }
+
 }
