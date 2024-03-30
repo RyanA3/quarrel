@@ -27,4 +27,27 @@
             $this->view('home/detail', $item_detail);
         }
 
+        public function edit($ItemID = '') {
+            $itemToEdit = $this->model('item')->find($ItemID);
+
+            if(isset($_POST['action'])) {
+                $itemToEdit->name = $_POST['name'];
+                $itemToEdit->update();
+                header('location:/home/index');
+            } else {
+                $this->view('home/edit', $itemToEdit);
+            }
+        }
+
+        public function delete($ItemID = '') {
+            $itemToDelete = $this->model('item')->find($ItemID);
+
+            if(isset($_POST['action'])) {
+                $itemToDelete->delete();
+                header('location:/home/index');
+            } else {
+                $this->view('home/delete', $itemToDelete);
+            }
+        }
+
     }

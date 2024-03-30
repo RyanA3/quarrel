@@ -28,4 +28,18 @@ class Item extends Model {
         return $statement->fetch();
     }
 
+    public function update() {
+        $sql = 'UPDATE Item SET name = :name WHERE ItemID = :ItemID';
+         $statement = self::$_connection->prepare($sql);
+         $statement->execute(['ItemID'=>$this->ItemID,'name'=>$this->name]);
+         return $statement->rowCount();
+    }
+
+    public function delete() {
+        $sql = 'DELETE FROM Item WHERE ItemID = :ItemID';
+        $statement = self::$_connection->prepare($sql);
+        $statement->execute(['ItemID'=>$this->ItemID]);
+        return $statement->rowCount();
+    }
+
 }

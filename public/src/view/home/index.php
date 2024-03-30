@@ -14,7 +14,12 @@
             <tbody>
                 <?php
                     foreach($data['items'] as $item) {
-                        echo "<tr><td>$item->name</td><td><a href='/home/detail/$item->ItemID'>Info</a></td></tr>";
+                        echo "<tr>
+                            <td>$item->name</td>
+                            <td><a href='/home/detail/$item->ItemID'>Info</a></td>
+                            <td><a href='/home/edit/$item->ItemID'>Edit</a></td>
+                            <td><a href='/home/delete/$item->ItemID'>Delete</a></td>
+                            </tr>";
                     }
                 ?>
 
